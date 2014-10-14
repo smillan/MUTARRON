@@ -93,9 +93,11 @@ Sequencer::Sequencer(int pos, int nSteps, Shifter_input& input, LED_driver& leds
 	for (int i = 0; i < nSteps; ++i)
 	{
 		notes.push_back(36);
-		triggers.push_back(shifter->steps[(posicion*8)+i]);
+		// triggers.push_back(shifter->steps[(posicion*8)+i]);
 		// leds.push_back(input.steps[posicion+i]);
 	}
+			// modes.runMode(data.seqParams.mode.value, numSteps);
+	
 
 }
 
@@ -162,8 +164,10 @@ void Sequencer::closeGate(){
 void Sequencer::clockStep(int timer)
 {
 		if (timer%numSteps==0)
-		{
+		{	
  			data.seqParams=cockpit->seqsData[posicion]->seqParams;
+			// modes.runMode(data.seqParams.mode.value, numSteps);
+
 			/* code */
 		}
 	totalSteps=numSteps*data.seqParams.count.value;
@@ -228,6 +232,8 @@ void Sequencer::clockStep(int timer)
 		}
 
 		
+		// cockpit->seqsData[posicion]->seqParams.step.value=(cockpit->seqsData[posicion]->seqParams.step.value+1)%totalSteps;
+		// int mode = modes.getStep(timer);
 		cockpit->seqsData[posicion]->seqParams.step.value=(cockpit->seqsData[posicion]->seqParams.step.value+1)%totalSteps;
 	}
 		

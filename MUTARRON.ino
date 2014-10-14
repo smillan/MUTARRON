@@ -63,10 +63,10 @@ void setup()
 	eventManager.addLeds(leds);
 	// eventManager.addSeq();
 	//ADD SEQUENCERS TO THE LIST 
-	eventManager.addSeq(Sequencer(0,8, input, leds, cockpit ,53, 0));
-	eventManager.addSeq(Sequencer(1,8, input, leds, cockpit ,51, 60));
-	eventManager.addSeq(Sequencer(2,16, input, leds, cockpit ,34, 8));
-	eventManager.addSeq(Sequencer(3,16, input, leds, cockpit ,10, 60));
+	// eventManager.addSeq(Sequencer(0,8, input, leds, cockpit ,53, 0));
+	// eventManager.addSeq(Sequencer(1,8, input, leds, cockpit ,51, 60));
+	// eventManager.addSeq(Sequencer(2,16, input, leds, cockpit ,34, 8));
+	// eventManager.addSeq(Sequencer(3,16, input, leds, cockpit ,10, 60));
 	for(int i=0; i<eventManager.seqs.size(); i++){
 	    	// eventManager.seqs[i].addCockpit(cockpit);
 	    	// eventManager.seqs[i].sendData(eventManager.seqs[i]);
@@ -174,6 +174,8 @@ void loop()
 	    	// eventManager.seqs[i].addCockpit(cockpit);
 	    	eventManager.seqs[i].sendData(i);
 	}
+   Serial.println(freeRam());
+	
 	
 }
 
@@ -211,4 +213,10 @@ void	trace(){
 	    
 	}
 
+}
+
+int freeRam () {
+  extern int __heap_start, *__brkval; 
+  int v; 
+  return (int) &v - (__brkval == 0 ? (int) &__heap_start : (int) __brkval); 
 }

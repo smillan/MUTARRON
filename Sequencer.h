@@ -14,6 +14,7 @@
 #include "CV_send.h"
 #include "Cockpit.h"
 #include "SeqData.h"
+#include "Step_Modes.h"
 using namespace std;
 
 class Sequencer
@@ -48,8 +49,9 @@ class Sequencer
 	std::vector<int> notes;
 	std::vector<int> vels;
 	std::vector<int> durs;
-	std::vector<int> triggers;
+	// std::vector<int> triggers;
 	String paramsTxt;
+	Step_Modes modes;
 	// std::vector<int> params;
  	unsigned long currentMillisGate;
  	unsigned long previousMillisGate;

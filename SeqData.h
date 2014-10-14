@@ -3,7 +3,6 @@
 #define SeqData_h
 #include <Arduino.h>
 #include <StandardCplusplus.h>
-#include <algorithm>
 #include <serstream>
 #include <string>
 #include <vector>

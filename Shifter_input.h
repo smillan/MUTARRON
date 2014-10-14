@@ -4,6 +4,8 @@
 #define Shifter_input_h
 
 #include <Arduino.h>
+#include "Cockpit.h"
+// #include "Event_Manager.h"
 
 
 #define NUMBER_OF_SHIFT_CHIPS  6
@@ -40,6 +42,10 @@ public:
 	void display_pin_values2();
 	void init();
 	void getValues();
+     void selectStep();
+
+     Cockpit* cockpit;
+     void addCockpit(Cockpit&);
 	BYTES_VAL_T pinValues;
 	BYTES_VAL_T oldPinValues;
 	BYTES_VAL_T2 pinValues2;

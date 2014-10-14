@@ -21,14 +21,21 @@ public:
 	void setupLeds();
 	void openLed( int );
 	void openLeds(  );
-	void clockStep(int );
-	void checkSteps(Shifter_input);
+	void setTempLed(int);
+
+	void clockStep( );
+	void checkSteps();
+	void addInput(Shifter_input&);
 	Shifter shifter ; 
+	Shifter_input* input ;
 	byte currentLeds[N_LEDS];
+	byte clockLeds[N_LEDS];
 	byte sequenceLeds[N_LEDS];
 	unsigned long prevMillis;
 	unsigned long currentMillis;
 	byte orden[24];
+	void forAll();
+	void for24();
 
 
 	  // shifter();

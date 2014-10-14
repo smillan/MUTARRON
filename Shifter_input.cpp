@@ -170,7 +170,10 @@ void Shifter_input::init()
     display_pin_values();
     display_pin_values2();
 }	
-
+void Shifter_input::addCockpit(Cockpit& cockpitin)
+{
+    cockpit=&cockpitin;
+}
 
 void Shifter_input::getValues()
 {	
@@ -192,10 +195,7 @@ void Shifter_input::getValues()
        
         display_pin_values();
         
-        //  for(int i=0; i<48; i++){
-        //     Serial2.print("| ");
-        //     Serial2.print(steps[i]);
-        // }
+        selectStep();
         oldPinValues = pinValues;
     }
       if(pinValues2 != oldPinValues2)
@@ -207,12 +207,19 @@ void Shifter_input::getValues()
         //     Serial2.print("| ");
         //     Serial2.print(steps[i]);
         // }
+        selectStep();
         oldPinValues2 = pinValues2;
     }
-    for (int i = 0; i < sizeof(old_steps); ++i)
-        {
-        	if(steps[i]!= old_steps[i]) selected = i;
-        }
+   
 
     // delay(POLL_DELAY_MSEC);
+}
+void Shifter_input::selectStep()
+{
+     for (int i = 0; i < sizeof(old_steps); ++i)
+        {
+            if(steps[i]!= old_steps[i]) selected = i;
+        }
+        cockpit->selectedStep = selected;
+        cockpit->update();
 }

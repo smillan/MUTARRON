@@ -4,16 +4,20 @@
 #include <string>
 #include <vector>
 #include <iterator>
+#include <Bounce.h>
 
 #include <Wire.h>
 
 #include <Shifter.h>
+#include "Clock.h"
+#include "Control.h"
+
 #include "Event_Manager.h"
+#include "Cockpit.h"
 
 #include "Shifter_input.h"
 #include "CV_send.h"
 #include "Sequencer.h"
-#include "Clock.h"
 
 #include "LCD_Screen.h"
 #include "LED_driver.h"
@@ -21,41 +25,64 @@
 using namespace std;
 namespace std
 {
-  // ohserialstream cout(Serial);
+
 }
+//shift in for step input
 Shifter_input input;
+//LCD
 LiquidCrystal lcd(38, 40, 42, 44, 46, 48);
 LCD_Screen info;
+Cockpit cockpit(lcd);
+// Shitf out for led driving
 LED_driver leds;
-Event_Manager eventManager;
-Clock timer;
-// Sequencer seq = Sequencer(0,8, input, leds);
-// Sequencer seq[4]={,Sequencer(1,8, input, leds),Sequencer(2,16, input, leds),Sequencer(4,16, input, leds)};
-// Sequencer seq = Sequencer(0,8);
+// LED_driver * ledpoint= &leds;
 
+//The one that whispers to the sequencers
+Event_Manager eventManager;
+//ClOkCK
+Clock timer;
+Control control(cockpit);
+
+
+
+//Tracing interval fro Serial.print
 unsigned long prevMillis=0;
 int interval=80;
 int cnt=0;
+
 void setup()
 {
-	info.defaulto();
-	eventManager.addSeq(Sequencer(0,8, input, leds));
-	// eventManager.addSeq(Sequencer(1,8, input, leds));
-	// eventManager.addSeq(Sequencer(2,16, input, leds));
-	// eventManager.addSeq(Sequencer(4,16, input, leds));
- 	timer.event_Manager=eventManager;
-
-	info.defaulto();
-	Serial.begin(9600);
 	input.init();
 	input.getValues();
+	input.addCockpit(cockpit);
+	//init screen
+	info.defaulto();
+	//add the input to the leds so they know about the sequence.
+	leds.addInput(input);
+	///add the leds to the EventManager so they can be triggered by the same clock
+	eventManager.addLeds(leds);
+	// eventManager.addSeq();
+	//ADD SEQUENCERS TO THE LIST 
+	eventManager.addSeq(Sequencer(0,8, input, leds, cockpit ,53, 0));
+	eventManager.addSeq(Sequencer(1,8, input, leds, cockpit ,51, 60));
+	eventManager.addSeq(Sequencer(2,16, input, leds, cockpit ,34, 8));
+	eventManager.addSeq(Sequencer(3,16, input, leds, cockpit ,10, 60));
+	for(int i=0; i<eventManager.seqs.size(); i++){
+	    	// eventManager.seqs[i].addCockpit(cockpit);
+	    	// eventManager.seqs[i].sendData(eventManager.seqs[i]);
+	}
+	//add the eventManager to the clock so it can be triggered
+ 	timer.eventManager=eventManager;
+
+	Serial.begin(9600);
+	//INIT SEQUENCE
 	lcd.begin(16, 2);
 	for(int i=0; i<24; i++){
 	    leds.openLed(i);
 	    delay(5);
 	}
-	leds.openLed(0);
-	leds.clockStep(0);
+	// leds.openLed(0);
+	// leds.clockStep();
 	// Print a message to the LCD.
 	lcd.print("PROPER BOLLOCKS!");
 	lcd.setCursor(0,1);
@@ -130,16 +157,26 @@ void setup()
 }
 void loop()
 {	
+	// Run clock
 	timer.runClock();
+	//always refresh inputs
 	input.getValues();
-	trace();
-	leds.checkSteps(input);
+	control.controls();
+	// trace();
+	//always udtape the led states
+	// leds.checkSteps();
+	//refresh leds
 	leds.openLeds();
-	info.getSequence16( input.steps, String(input.selected+1) );
-	// eventManager.loop();
-	writeScreen();
+	// update Screen
+	// info.getSequence16( input.steps, String(input.selected+1) );
+	// writeScreen();
+	for(int i=0; i<eventManager.seqs.size(); i++){
+	    	// eventManager.seqs[i].addCockpit(cockpit);
+	    	eventManager.seqs[i].sendData(i);
+	}
 	
 }
+
 void writeScreen(){
 	lcd.clear();
 	lcd.setCursor(0,0);

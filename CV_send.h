@@ -20,6 +20,7 @@ class CV_send
  	int pin2;
  	int pin3;
  	int inhibitPin;
+ 	
  	/* data */
  };
 

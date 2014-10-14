@@ -12,6 +12,7 @@ CV_send::CV_send(int muxpin1,int muxpin2,int muxpin3,int inhibit )
 
 void CV_send::openStep(int nStep)
 {
+	
     int r0 = bitRead(nStep,0);    // use this with arduino 0013 (and newer versions)     
     int r1 = bitRead(nStep,1);    // use this with arduino 0013 (and newer versions)     
     int r2 = bitRead(nStep,2);
@@ -43,7 +44,6 @@ void CV_send::active()
 
 void CV_send::setupCV()
 {	
-	
 	pinMode(pin1, OUTPUT);
 	pinMode(pin2, OUTPUT);
 	pinMode(pin3, OUTPUT);

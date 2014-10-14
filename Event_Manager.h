@@ -8,6 +8,8 @@
 #include <vector>
 #include <iterator>
 #include "Sequencer.h"
+#include "LED_driver.h"
+
 
 using namespace std;
 
@@ -17,7 +19,9 @@ using namespace std;
  	Event_Manager();
  	// Clock clocko;
 	std::vector<Sequencer> seqs;
+	LED_driver* leds;
 	void addSeq(Sequencer);
+	void addLeds(LED_driver& );
 	void loop();
 	void tickClock(int );
 

@@ -2,9 +2,9 @@
 #ifndef Clock_h
 #define Clock_h
 #include <Arduino.h>
-#include <StandardCplusplus.h>
-#include <serstream>
-#include <string>
+// #include <StandardCplusplus.h>
+// #include <serstream>
+// #include <string>
 #include "Event_Manager.h"
 // #include "Sequencer.h"
 
@@ -25,7 +25,7 @@
  	unsigned long previousMillisClockOut;
  	unsigned long currentMillis;
  	unsigned long previousMillis;
- 	Event_Manager event_Manager;
+ 	Event_Manager eventManager;
  	int clockDuration;
  	byte clockState;
  	int clockType;

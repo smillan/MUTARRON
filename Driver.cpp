@@ -1,13 +1,13 @@
-#include "LED_driver.h"
+#include "Driver.h"
 
-LED_driver::LED_driver() /* : shifter(SER_Pin, RCLK_Pin, SRCLK_Pin, NUM_REGISTERS)*/
+Driver::Driver() /* : shifter(SER_Pin, RCLK_Pin, SRCLK_Pin, NUM_REGISTERS)*/
 {
 	prevMillis=0;
 
 
 }
 
-// void LED_driver::setupLeds(){
+// void Driver::setupLeds(){
 // 	// init arrays
 // 	for(int i=0; i<N_LEDS; i++){
 // 		sequenceLeds[i]=0;   
@@ -16,12 +16,12 @@ LED_driver::LED_driver() /* : shifter(SER_Pin, RCLK_Pin, SRCLK_Pin, NUM_REGISTER
 // 	}
 // }
 
-// void LED_driver::addInput(Shifter_input& shifter)
+// void Driver::addInput(Shifter_input& shifter)
 // {
 // 	input=&shifter;
 // }
 
-// void LED_driver::checkSteps(){
+// void Driver::checkSteps(){
 
 // 	for (int i = 0; i < 24; ++i)
 // 	{
@@ -31,7 +31,7 @@ LED_driver::LED_driver() /* : shifter(SER_Pin, RCLK_Pin, SRCLK_Pin, NUM_REGISTER
 // }
 
 
-// void LED_driver::for24(){
+// void Driver::for24(){
 // 	int temp=0;
 // 	for (int i = 0; i < N_LEDS; ++i)
 // 	{
@@ -45,7 +45,7 @@ LED_driver::LED_driver() /* : shifter(SER_Pin, RCLK_Pin, SRCLK_Pin, NUM_REGISTER
 // 	}
 // }
 
-// void LED_driver::forAll(){
+// void Driver::forAll(){
 	
 // 	for (int i = 0; i < N_LEDS; ++i)
 // 	{
@@ -54,7 +54,7 @@ LED_driver::LED_driver() /* : shifter(SER_Pin, RCLK_Pin, SRCLK_Pin, NUM_REGISTER
 // 	}
 // }
 
-// void LED_driver::openLeds(){
+// void Driver::openLeds(){
 // 	currentMillis=millis();
 
 // 	shifter.clear(); //set all pins on the shift register chain to LOW
@@ -78,7 +78,7 @@ LED_driver::LED_driver() /* : shifter(SER_Pin, RCLK_Pin, SRCLK_Pin, NUM_REGISTER
 
  
 // }
-// void LED_driver::setTempLed(int led)
+// void Driver::setTempLed(int led)
 // {	
 		
 		
@@ -99,7 +99,7 @@ LED_driver::LED_driver() /* : shifter(SER_Pin, RCLK_Pin, SRCLK_Pin, NUM_REGISTER
 
 
 
-// void LED_driver::clockStep(){
+// void Driver::clockStep(){
 	
 // 	// memcpy(currentLeds, sequenceLeds, N_LEDS);
 // 	// Serial.print("clockstep");
@@ -117,7 +117,7 @@ LED_driver::LED_driver() /* : shifter(SER_Pin, RCLK_Pin, SRCLK_Pin, NUM_REGISTER
 	
 // }
 
-// void LED_driver::openLed(int nLed){
+// void Driver::openLed(int nLed){
 	
 //   shifter.clear(); //set all pins on the shift register chain to LOW
 //   shifter.write(); //send changes to the chain and display them

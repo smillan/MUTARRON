@@ -1,6 +1,6 @@
 
-#ifndef LED_driver_h
-#define LED_driver_h
+#ifndef Driver_h
+#define Driver_h
 #include <Arduino.h>
 
 // #include <Shifter.h>
@@ -15,10 +15,10 @@
 #define N_LEDS 24
 
 
-class LED_driver
+class Driver
 {
 public:
-	LED_driver();
+	Driver();
 	// void setupLeds();
 	// void openLed( int );
 	// void openLeds(  );

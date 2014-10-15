@@ -43,7 +43,7 @@ using namespace std;
  		settings step; // current step in numSteps *  count     
 		settings repeat; // how many loops
  		settings mode;
- 		settings duration;
+ 		settings dur;
  		settings midiChan;
  		settings clockDivision;
 

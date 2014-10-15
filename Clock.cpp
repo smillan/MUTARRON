@@ -27,7 +27,7 @@ void Clock::readTempo(){
 }
 void Clock::notify()
 {	
-	eventManager.tickClock(timer);
+	// eventManager.tickClock(timer);
 
 
 }

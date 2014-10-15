@@ -26,7 +26,7 @@ String SeqData::getDataTop(int seq, int page)
 			temp+=" ";
 			temp+=seqParams.clockDivision.name;
 			temp+=" ";
-			temp+=seqParams.duration.name;
+			temp+=seqParams.dur.name;
 			temp+=" ";
 			temp+=seqParams.midiChan.name;
 			temp+=" ";
@@ -61,7 +61,7 @@ String SeqData::getDataBottom(int page)
 		temp+=" ";
 		temp+= threeChar( String(seqParams.clockDivision.value) );
 		temp+=" ";
-		temp+= threeChar( String(seqParams.duration.value) );
+		temp+= threeChar( String(seqParams.dur.value) );
 		temp+=" ";
 		temp+= threeChar( String(seqParams.midiChan.value+1) );
 		temp+=" ";
@@ -120,8 +120,8 @@ void SeqData::setData(int page, int valueInPage, int value)
 					seqParams.clockDivision.value = max(temp, seqParams.clockDivision.min);
 					break;
 					case 2:
-					temp = (seqParams.duration.value+(seqParams.duration.increment*value))%seqParams.duration.max;
-					seqParams.duration.value = max(temp, seqParams.duration.min);
+					temp = (seqParams.dur.value+(seqParams.dur.increment*value))%seqParams.dur.max;
+					seqParams.dur.value = max(temp, seqParams.dur.min);
 					break;
 					case 3:
 					temp = (seqParams.midiChan.value+(seqParams.midiChan.increment*value))%seqParams.midiChan.max;

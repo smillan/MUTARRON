@@ -7,8 +7,8 @@
 #include <string>
 #include <vector>
 #include <iterator>
-#include "Sequencer.h"
-#include "LED_driver.h"
+// #include "Sequencer.h"
+// #include "Driver.h"
 
 
 using namespace std;
@@ -18,12 +18,12 @@ using namespace std;
  public:
  	Event_Manager();
  	// Clock clocko;
-	std::vector<Sequencer> seqs;
-	LED_driver* leds;
-	void addSeq(Sequencer);
-	void addLeds(LED_driver& );
+	// Driver* leds;
+	// void addSeq(Sequencer);
+	// void addLeds(Driver& );
 	void loop();
 	void tickClock(int );
+	// std::vector<Sequencer> seqs;
 
  
  	/* data */
